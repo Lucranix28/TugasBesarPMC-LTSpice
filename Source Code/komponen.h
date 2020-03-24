@@ -44,20 +44,16 @@ Rules :
 
 struct Node
 {
-    // Any data type can be stored in this node
+    // Bentukan Node
     float volt;
     struct Node *next;
 };
 
 struct Branch
 {
-    /* data */
+    // Bentukan Branch
     float amp;
-    char *elemen, point_a, point_b;
+    int elemen_id;
+    char point_a, point_b;
     struct Branch *next; 
-};
-
-void resistor()
-{
-    //        
 };
