@@ -46,17 +46,18 @@ struct Node
 {
     // Any data type can be stored in this node
     float volt;
-    struct Node **next;
+    struct Node *next;
 };
 
 struct Branch
 {
     /* data */
-
+    float amp;
+    char *elemen, point_a, point_b;
+    struct Branch *next; 
 };
-
 
 void resistor()
 {
     //        
-}
+};
