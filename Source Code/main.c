@@ -5,7 +5,7 @@
 float w, dt;
 
 int main(void){
-    char net_name[] = "netlist/", s[MaxChar], c, temp[MaxChar], *token;
+    char net_name[] = "netlist/", s[MaxChar], c, temp[MaxChar], *token, node;
     const char space[2] = " ";
 
     int i = 0, j = 0;
@@ -39,15 +39,15 @@ int main(void){
         token = strtok(temp, " ");
         printf("\t ID Komponen \t : %s \n", token);
         token = strtok(NULL, " ");
-        printf("\t Node 1 : %s", token);
+        printf("\t Node pangkal : %s", token);
         token = strtok(NULL, " ");
-        printf("\t Node 2 : %s", token);
+        printf("\t Node ujung : %s", token);
         token = strtok(NULL, " ");
         param = atof(token);
         printf("\t Parameter : %f \n", param);
     }
 
-    
+
     fclose(netlist);
     return (0);
 }
