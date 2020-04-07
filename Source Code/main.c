@@ -2,10 +2,12 @@
 #include "komponen.h"
 
 // Global Variabel
-float w, dt;
+float w = 50, dt;
+int n_komponen = 0;
 
-int main(void){
-    char net_name[] = "netlist/", s[MaxChar], c, temp[MaxChar], *token, node;
+int main(void)
+{
+    char net_name[] = "netlist/", s[MaxChar], c, temp[MaxChar], *token, node, *tipe, *nodeA, *nodeB;
     const char space[2] = " ";
 
     int i = 0, j = 0;
@@ -27,6 +29,7 @@ int main(void){
     printf("dt = %.3f \n\n", dt);
 
     // Input Komponen
+    n_komponen = 0;
     while(fgets(temp,MaxChar, netlist) != NULL)
     {
         i++;
@@ -35,17 +38,29 @@ int main(void){
             temp[strlen(temp) - 1] = '\0';
         }
         
+
         printf("Netlist ke-%d : %s \n", i, temp);
         token = strtok(temp, " ");
-        printf("\t ID Komponen \t : %s \n", token);
+        tipe = token;
+
         token = strtok(NULL, " ");
-        printf("\t Node pangkal : %s", token);
+        nodeA = token;
+
         token = strtok(NULL, " ");
-        printf("\t Node ujung : %s", token);
+        nodeB = token;
+        
         token = strtok(NULL, " ");
         param = atof(token);
+        
+        printf("\t ID Komponen : %s \n", tipe);
+        printf("\t Node pangkal : %s", nodeA);
+        printf("\t Node ujung : %s", nodeB);
         printf("\t Parameter : %f \n", param);
+
+        n_komponen++;
     }
+
+
 
 
     fclose(netlist);

@@ -1,1 +1,0 @@
-#include "komponen.h"
