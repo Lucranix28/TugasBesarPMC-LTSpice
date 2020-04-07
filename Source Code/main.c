@@ -47,6 +47,7 @@ int main(void){
         printf("\t Parameter : %f \n", param);
     }
 
+    
     fclose(netlist);
     return (0);
 }
