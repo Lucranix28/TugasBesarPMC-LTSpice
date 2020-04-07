@@ -1,12 +1,8 @@
 #include "komponen.h"
 
-void newBranch(char *ID, char *nodeA, char *nodeB, float param);
+void newBranch(const char *ID, const char *nodeA, const char *nodeB, const float param);
 
-void newBranch(char *ID, char *nodeA, char *nodeB, float param){
-    
-    if (ID == )
-    {
-        /* code */
-    }
+void newBranch(const char *ID, const char *nodeA, const char *nodeB, const float param)
+{
     
 }
