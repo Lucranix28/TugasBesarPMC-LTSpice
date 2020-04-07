@@ -6,7 +6,7 @@
 Rules :
     1. amp = dq/dt = volt/R
     2. volt = dw/dq : joule/coulomb
-    3. power = dw/dt = volt.amp
+    3. power = dw/dt = volt*amp
         power + -> absorbed
         power - -> released
         in a circuit -> stigma p = 0
@@ -56,15 +56,35 @@ Rules :
     ->  7. Resistor
     ->  8. Kapasitor
     ->  9. Induktor
+*/
 
-    
+/*
+// First Line
+W 
+
+//Next Line
+//Elemen name   First Node  Next Node   Parameter
+
+Elemen Name : 
+    -> Voltage Source : Vsn
+    -> Current Source : Isn
+
+    -> Resistor    : R_n
+    -> Capacitor   : C_n
+    -> Inductor    : L_n
+
+    //n diubah dengan asumsi :
+        jika terdapat elemen yang sama akan menimpa elemen sebelumnya 
 */
 #define pi 3.14159265359
+#define MaxChar 100
 
 struct Node
 {
     // Bentukan Node
     float volt;
+    char node_id;
+
     int n_cabang;
     struct Node *next;
 };
@@ -73,22 +93,32 @@ struct Branch
 {
     // Bentukan Branch
     float amp;
-    char *elemen_id;
+    char elemen_id;
+
     int elemen_type;
-    char *a_id, *b_id; 
+    char a_id, b_id; // Node yang dihubungkan
+    
+    float param;
     struct Branch *next; 
 };
 
-void searchNode(char *id, struct Node *a);
+// void searchNode(const char id, struct Node *a);
 
-void Resistor(struct Branch *target, struct Node *head, float Res){
-    int a_id, b_id;
-    struct Node *b, *a;
+// void Resistor(struct Branch *target, struct Node *head, float Res){
+//     int a_id, b_id;
+//     struct Node *b, *a;
 
-    a_id = target->a_id;
+//     a_id = target->a_id;
+//     b_id = target->b_id;
 
-    searchNode(a_id, a);
-    searchNode(b_id, b);
-    target->amp = (b->volt - a->volt);
-}
+//     searchNode(a_id, a);
+//     searchNode(b_id, b);
+//     target->amp = (b->volt - a->volt)/ target->param;
+// }
 
+// void parse(char *input, char id);
+
+// void setValue(struct Branch *komponen, struct Node *head, const char *input){
+//     parse(input, 'C');
+
+// }
