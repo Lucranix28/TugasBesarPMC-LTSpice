@@ -66,12 +66,12 @@ W
 //Elemen name   First Node  Next Node   Parameter
 
 Elemen Name : 
-    -> Voltage Source : Vsn
-    -> Current Source : Isn
+    -> Voltage Source : V
+    -> Current Source : I
 
-    -> Resistor    : R_n
-    -> Capacitor   : C_n
-    -> Inductor    : L_n
+    -> Resistor    : R
+    -> Capacitor   : C
+    -> Inductor    : L
 
     //n diubah dengan asumsi :
         jika terdapat elemen yang sama akan menimpa elemen sebelumnya 
@@ -100,8 +100,7 @@ struct Branch
     // Bentukan Branch
     float amp;
     char elemen_id;
-
-    int elemen_type;
+    
     char a_id, b_id; // Node yang dihubungkan
     
     float param;
