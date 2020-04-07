@@ -1,6 +1,4 @@
-// #include "Analisis.h"
-#include "komponen.h"
-
+#include "Analisis.h"
 // Global Variabel
 float w = 50, dt;
 int n_komponen = 0;
@@ -32,14 +30,13 @@ int main(void)
     n_komponen = 0;
     while(fgets(temp,MaxChar, netlist) != NULL)
     {
-        i++;
+        n_komponen++;
         if (temp[strlen(temp) - 1] == '\n')
         {
             temp[strlen(temp) - 1] = '\0';
         }
-        
 
-        printf("Netlist ke-%d : %s \n", i, temp);
+        printf("Netlist ke-%d : %s \n", n_komponen, temp);
         token = strtok(temp, " ");
         tipe = token;
 
@@ -57,11 +54,11 @@ int main(void)
         printf("\t Node ujung : %s", nodeB);
         printf("\t Parameter : %f \n", param);
 
-        n_komponen++;
+        newBranch(tipe, nodeA, nodeB, param);
     }
 
 
-
+    
 
     fclose(netlist);
     return (0);
