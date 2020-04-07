@@ -1,12 +1,12 @@
 #include "Analisis.h"
 
-// Global Variabel
-float w = 50, dt;
+// Global Variabel -> default
+float w = 50, dt = 0.02;
 int n_komponen = 0;
 
 int main(void)
 {
-    char net_name[] = "netlist/", s[MaxChar], c, temp[MaxChar], *token, *tipe, *nodeA, *nodeB;
+    char net_name[] = "netlist/", dir_out[] = "output/", s[MaxChar], c, temp[MaxChar], *token, *tipe, *nodeA, *nodeB;
     const char space[2] = " ";
 
     int i = 0, j = 0;
@@ -28,7 +28,6 @@ int main(void)
     printf("dt = %.4f \n\n", dt);
 
     // Input Komponen
-    n_komponen = 0;
     while(fgets(temp,MaxChar, netlist) != NULL)
     {
         n_komponen++;
@@ -56,9 +55,19 @@ int main(void)
         printf("\t Parameter : %f \n", param);
 
         newBranch(tipe, nodeA, nodeB, param); // Mengatur Matriks S dam A
+
     }
 
+    printf("Input nama output : ");
+    scanf(" %s", s);
 
+    strcat(dir_out, s);
+    strcat(dir_out, ".txt");
+    output = fopen(dir_out, "w");
+
+    
+
+    fclose(output);
     fclose(netlist);
     return (0);
 }

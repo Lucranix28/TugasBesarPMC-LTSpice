@@ -79,6 +79,12 @@ Elemen Name :
 #define pi 3.14159265359
 #define MaxChar 100
 
+void Resistor();
+void Capacitor();
+void Inductor();
+void Voltage();
+void Current();
+
 struct Node
 {
     // Bentukan Node
@@ -102,6 +108,28 @@ struct Branch
     struct Branch *next; 
 };
 
+void Resistor()
+{
+    printf("Res");
+}
+
+void Capacitor()
+{
+    printf("Cap");
+}
+
+void Inductor()
+{
+    printf("Ind");
+}
+void Voltage()
+{
+    printf("Vol");
+}
+void Current()
+{
+    printf("Cur");
+}
 // void searchNode(const char id, struct Node *a);
 
 // void Resistor(struct Branch *target, struct Node *head, float Res){
