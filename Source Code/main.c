@@ -53,9 +53,8 @@ int main(void)
         printf("\t Node pangkal : %s", nodeA);
         printf("\t Node ujung : %s", nodeB);
         printf("\t Parameter : %f \n", param);
-
-        newBranch(tipe, nodeA, nodeB, param); // Mengatur Matriks S dam A
-
+        
+        newBranch(n_komponen, tipe, nodeA, nodeB, param); // Mengatur Matriks S dam A
     }
 
     printf("Input nama output : ");
