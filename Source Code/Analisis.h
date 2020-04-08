@@ -2,7 +2,7 @@
 
 #define Mat_lim 20
 
-float S[Mat_lim][Mat_lim],A[Mat_lim][Mat_lim], Tableau[Mat_lim][Mat_lim];
+float S[Mat_lim],A[Mat_lim][Mat_lim], Tableau[Mat_lim][Mat_lim];
 char *Var_V[Mat_lim], *Var_I[Mat_lim], *Var_e[Mat_lim];
 
 void newBranch(int n_komponen, const char *ID, const char *nodeA, const char *nodeB, const float param);
@@ -19,12 +19,12 @@ void newBranch(int n_komponen, const char *ID, const char *nodeA, const char *no
             for (j = 0; j < Mat_lim; j++)
             {
                 A[i][j] = 0;
-                S[i][j] = 0;
                 Tableau[i][j] = 0;
             }
             *Var_e[i] = "";
             *Var_V[i] = "";
             *Var_I[i] = "";
+            S[i] = 0;
         }
     }
     
