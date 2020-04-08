@@ -1,16 +1,31 @@
 #include "komponen.h"
 
-float S[20][20],A[20][20], Tableau[20][20];
+#define Mat_lim 20
+
+float S[Mat_lim][Mat_lim],A[Mat_lim][Mat_lim], Tableau[Mat_lim][Mat_lim];
+char *Var_V[Mat_lim], *Var_I[Mat_lim], *Var_e[Mat_lim];
 
 void newBranch(int n_komponen, const char *ID, const char *nodeA, const char *nodeB, const float param);
 int Gauss(float A[20][20]); // Source : https://www.codewithc.com/c-program-for-gauss-jordan-method/
 
 void newBranch(int n_komponen, const char *ID, const char *nodeA, const char *nodeB, const float param)
 {
+    int i = 0, j = 0;
     if (n_komponen == 1)
     {
         // Inisiasi Matriks
-
+        for (i = 0; i < Mat_lim; i++)
+        {
+            for (j = 0; j < Mat_lim; j++)
+            {
+                A[i][j] = 0;
+                S[i][j] = 0;
+                Tableau[i][j] = 0;
+            }
+            *Var_e[i] = "";
+            *Var_V[i] = "";
+            *Var_I[i] = "";
+        }
     }
     
     char head;
