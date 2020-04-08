@@ -85,27 +85,27 @@ void Inductor();
 void Voltage();
 void Current();
 
-struct Node
-{
-    // Bentukan Node
-    float volt;
-    char node_id;
+// struct Node
+// {
+//     // Bentukan Node
+//     float volt;
+//     char node_id;
 
-    int n_cabang;
-    struct Node *next;
-};
+//     int n_cabang;
+//     struct Node *next;
+// };
 
-struct Branch
-{
-    // Bentukan Branch
-    float amp;
-    char elemen_id;
+// struct Branch
+// {
+//     // Bentukan Branch
+//     float amp;
+//     char elemen_id;
     
-    char a_id, b_id; // Node yang dihubungkan
+//     char a_id, b_id; // Node yang dihubungkan
     
-    float param;
-    struct Branch *next; 
-};
+//     float param;
+//     struct Branch *next; 
+// };
 
 void Resistor()
 {
