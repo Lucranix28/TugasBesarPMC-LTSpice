@@ -120,7 +120,5 @@ void resetMat(){
         I[i] = default_i;
         V[i] = default_v;
         E[i] = default_v;
-
-
     }
 }
