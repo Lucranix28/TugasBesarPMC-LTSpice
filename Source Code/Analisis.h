@@ -2,11 +2,30 @@
 
 #define Mat_lim 20
 
-float S[Mat_lim],A[Mat_lim][Mat_lim], Tableau[Mat_lim][Mat_lim];
-char *Var_V[Mat_lim], *Var_I[Mat_lim], *Var_e[Mat_lim];
+typedef struct Volt
+{
+    /* data */
+    char *Node_id;
+    float V, dV;
+} volt;
+
+typedef struct Amp
+{
+    /* data */
+    char *Branch_id;
+    float I, dI;
+} amp;
+
+volt default_v = {"", 0, 0};
+amp default_i = {"", 0, 0};
+
+float Ki[Mat_lim][Mat_lim],Kv[Mat_lim][Mat_lim], A[Mat_lim][Mat_lim], Tableau[Mat_lim][Mat_lim], S[Mat_lim];
+amp I[Mat_lim];
+volt V[Mat_lim], E[Mat_lim];
 
 void newBranch(int n_komponen, const char *ID, const char *nodeA, const char *nodeB, const float param);
 int Gauss(float A[20][20]); // Source : https://www.codewithc.com/c-program-for-gauss-jordan-method/
+void resetMat();
 
 void newBranch(int n_komponen, const char *ID, const char *nodeA, const char *nodeB, const float param)
 {
@@ -14,18 +33,7 @@ void newBranch(int n_komponen, const char *ID, const char *nodeA, const char *no
     if (n_komponen == 1)
     {
         // Inisiasi Matriks
-        for (i = 0; i < Mat_lim; i++)
-        {
-            for (j = 0; j < Mat_lim; j++)
-            {
-                A[i][j] = 0;
-                Tableau[i][j] = 0;
-            }
-            *Var_e[i] = "";
-            *Var_V[i] = "";
-            *Var_I[i] = "";
-            S[i] = 0;
-        }
+        resetMat();
     }
     
     char head;
@@ -96,4 +104,23 @@ int Gauss(float A[20][20])
         printf("\n x%d=%f\n", i, x[i]);
     }
     return (0);
+}
+
+void resetMat(){
+    for (int i = 0; i < Mat_lim; i++)
+    {
+        for (int j = 0; j < Mat_lim; j++)
+        {
+            Ki[i][j] = 0;
+            Kv[i][j] = 0;
+            A[i][j] = 0;
+            Tableau[i][j] = 0;
+        }
+        S[i] = 0;
+        I[i] = default_i;
+        V[i] = default_v;
+        E[i] = default_v;
+
+
+    }
 }
