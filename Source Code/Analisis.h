@@ -21,14 +21,25 @@ amp default_i = {"", 0, 0};
 
 float Ki[Mat_lim][Mat_lim],Kv[Mat_lim][Mat_lim], Tableau[Mat_lim][Mat_lim], S[Mat_lim];
 int A[Mat_lim][Mat_lim], Transpose_Min_A[Mat_lim][Mat_lim];
-
+char *ground;
 amp I[Mat_lim];
 volt V[Mat_lim], E[Mat_lim];
 
 void newBranch(int n_komponen, const char *ID, const char *nodeA, const char *nodeB, const float param);
 int Gauss(float A[20][20]); // Source : https://www.codewithc.com/c-program-for-gauss-jordan-method/
 void resetMat();
+int Accepted(const char *nodeA, const char *nodeB);
 
+int Accepted(const char *nodeA, const char *nodeB)
+{
+    int val = 1;
+
+    // Apakkah node sama
+    if (strcmp(nodeA,nodeB))
+    {
+        /* code */
+    }
+}
 void newBranch(int n_komponen, const char *ID, const char *nodeA, const char *nodeB, const float param)
 {
     int i = 0, j = 0, n_id;
@@ -39,12 +50,15 @@ void newBranch(int n_komponen, const char *ID, const char *nodeA, const char *no
     {
         // Inisiasi Matriks
         resetMat();
-        E[0].Node_id = nodeA; // Set As Ground
+        
+        
+        strcpy(ground, nodeA);
+        strcpy(E[0].Node_id ,nodeA); // Set As Ground
         E[0].V = 0;
         
-        E[1].Node_id = nodeB; // Next Node
+        strcpy(E[1].Node_id,nodeB); // Next Node
         
-        V[0].Node_id = ID;
+        strcpy(V[0].Node_id,ID);
 
         Transpose_Min_A[0][0] = -1; // V = Ea - Eg
         Transpose_Min_A[0][1] = 1;
@@ -53,9 +67,6 @@ void newBranch(int n_komponen, const char *ID, const char *nodeA, const char *no
     }
     else
     {
-        if(Connect(nodeA, nodeB)){
-            
-        }
     }
     
     char head;
@@ -144,4 +155,5 @@ void resetMat(){
         V[i] = default_v;
         E[i] = default_v;
     }
+    strcpy(ground,"");
 }
