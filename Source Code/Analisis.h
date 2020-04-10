@@ -19,7 +19,9 @@ typedef struct Amp
 volt default_v = {"", 0, 0};
 amp default_i = {"", 0, 0};
 
-float Ki[Mat_lim][Mat_lim],Kv[Mat_lim][Mat_lim], A[Mat_lim][Mat_lim], Tableau[Mat_lim][Mat_lim], S[Mat_lim];
+float Ki[Mat_lim][Mat_lim],Kv[Mat_lim][Mat_lim], Tableau[Mat_lim][Mat_lim], S[Mat_lim];
+int A[Mat_lim][Mat_lim], Transpose_Min_A[Mat_lim][Mat_lim];
+
 amp I[Mat_lim];
 volt V[Mat_lim], E[Mat_lim];
 
@@ -29,11 +31,31 @@ void resetMat();
 
 void newBranch(int n_komponen, const char *ID, const char *nodeA, const char *nodeB, const float param)
 {
-    int i = 0, j = 0;
-    if (n_komponen == 1)
+    int i = 0, j = 0, n_id;
+
+    n_id = n_komponen-1;
+
+    if (n_id == 0)
     {
         // Inisiasi Matriks
         resetMat();
+        E[0].Node_id = nodeA; // Set As Ground
+        E[0].V = 0;
+        
+        E[1].Node_id = nodeB; // Next Node
+        
+        V[0].Node_id = ID;
+
+        Transpose_Min_A[0][0] = -1; // V = Ea - Eg
+        Transpose_Min_A[0][1] = 1;
+
+        printf("Komponen berikut menjadi komponen awal dengan %s sebagai Ground", nodeA);
+    }
+    else
+    {
+        if(Connect(nodeA, nodeB)){
+            
+        }
     }
     
     char head;
@@ -114,6 +136,7 @@ void resetMat(){
             Ki[i][j] = 0;
             Kv[i][j] = 0;
             A[i][j] = 0;
+            Transpose_Min_A[i][j] = 0;
             Tableau[i][j] = 0;
         }
         S[i] = 0;
