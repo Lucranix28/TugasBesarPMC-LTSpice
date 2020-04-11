@@ -20,8 +20,8 @@ volt default_v = {"", 0, 0};
 amp default_i = {"", 0, 0};
 
 float Ki[Mat_lim][Mat_lim],Kv[Mat_lim][Mat_lim], Tableau[Mat_lim][Mat_lim], S[Mat_lim];
-int A[Mat_lim][Mat_lim], Transpose_Min_A[Mat_lim][Mat_lim];
-char *ground;
+int A[Mat_lim][Mat_lim], Transpose_Min_A[Mat_lim][Mat_lim], n_var, n_branch;
+char *ground, *Variabel[Mat_lim];
 
 amp I[Mat_lim];
 volt V[Mat_lim], E[Mat_lim];
@@ -29,27 +29,39 @@ volt V[Mat_lim], E[Mat_lim];
 void newBranch(int n_komponen, const char *ID, const char *nodeA, const char *nodeB, const float param);
 int Gauss(); // Source : https://www.codewithc.com/c-program-for-gauss-jordan-method/
 void resetMat();
-int Accepted(const char *nodeA, const char *nodeB);
+int isAccepted(const char *nodeA, const char *nodeB);
+void ProcessMat();
+void OutToFile(char *file);
 
-int Accepted(const char *nodeA, const char *nodeB)
+void OutToFile(char *file){
+    fprintf(file, "%.4f;%.3f \n", time, dt);
+    for (int i = 0; i < n_var; i++)
+    {
+        /* code */
+        
+    }
+    
+    fprintf(file,"")
+}
+
+int isAccepted(const char *nodeA, const char *nodeB)
 {
-    int val = 1;
-
     // Apakkah node sama
     if (strcmp(nodeA,nodeB))
     {
         /* code */
-        val = 0;
+        return 0;
     }
+    return 1;
+    
 }
 void newBranch(int n_komponen, const char *ID, const char *nodeA, const char *nodeB, const float param)
 {
     int i = 0, j = 0, n_id;
 
     n_id = n_komponen-1;
-
-    if (n_id == 0)
-    {
+    if(isAccepted(nodeA, nodeB)){
+        if (n_id == 0){
         // Inisiasi Matriks
         resetMat();
         
@@ -66,40 +78,46 @@ void newBranch(int n_komponen, const char *ID, const char *nodeA, const char *no
         Transpose_Min_A[0][1] = 1;
 
         printf("Komponen berikut menjadi komponen awal dengan %s sebagai Ground", nodeA);
+        }
+        else
+        {
+
+        }   
+        char head;
+        
+        head = ID[0];
+        switch (head)
+        {
+        case 'R':
+            /* code */
+            Resistor();
+            break;
+        case 'V':
+            /* code */
+            Voltage();
+            break;
+        case 'C':
+            /* code */
+            Capacitor();
+            break;
+        case 'I':
+            /* code */
+            Current();
+            break;
+        case 'L':
+            /* code */
+            Inductor();
+            break;
+        default:
+            printf("Komponen tidak dikenal, diabaikan");
+            break;
+        };
     }
     else
     {
+        printf("Komponen berikut keliru, diabaikan");
     }
     
-    char head;
-    
-    head = ID[0];
-    switch (head)
-    {
-    case 'R':
-        /* code */
-        Resistor();
-        break;
-    case 'V':
-        /* code */
-        Voltage();
-        break;
-    case 'C':
-        /* code */
-        Capacitor();
-        break;
-    case 'I':
-        /* code */
-        Current();
-        break;
-    case 'L':
-        /* code */
-        Inductor();
-        break;
-    default:
-        printf("Komponen tidak dikenal, diabaikan");
-        break;
-    };
 }
 
 int Gauss()
@@ -118,10 +136,11 @@ int Gauss()
         {
             if (i != j)
             {
-                c = Tableau[i][j] / [j][j];
+                c = Tableau[i][j] / Tableau[j][j];
                 for (k = 1; k <= n + 1; k++)
                 {
-                    A[i][k] = A[i][k] - c * A[j][k];
+                    
+                    Tableau[i][k] = Tableau[i][k] - c * Tableau[j][k];
                 }
             }
         }
@@ -129,7 +148,7 @@ int Gauss()
     printf("\nThe solution is:\n");
     for (i = 1; i <= n; i++)
     {
-        x[i] = A[i][n + 1] / A[i][i];
+        x[i] = Tableau[i][n + 1] /Tableau[i][i];
         printf("\n x%d=%f\n", i, x[i]);
     }
     return (0);

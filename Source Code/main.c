@@ -3,14 +3,15 @@
 // Global Variabel -> default
 float w = 50, dt = 0.02;
 int n_komponen = 0;
+float time, time_start, time_end;
 
 int main(void)
 {
-    char net_name[] = "netlist/", dir_out[] = "output/", s[MaxChar], c, temp[MaxChar], *token, *tipe, *nodeA, *nodeB;
+    char net_name[] = "netlist/", dir_out[] = "output/", s[MaxChar], c, temp[MaxChar], *token, *tipe, *nodeA, *nodeB, *var; 
     const char space[2] = " ";
 
     int i = 0, j = 0;
-    double param;
+    float param;
     FILE *netlist, *output;
 
     printf("Input nama netlist : ");
@@ -54,19 +55,37 @@ int main(void)
         printf("\t Node ujung : %s", nodeB);
         printf("\t Parameter : %f \n", param);
         
-        newBranch(n_komponen, tipe, nodeA, nodeB, param); // Mengatur Matriks S dam A
+        newBranch(n_komponen, tipe, nodeA, nodeB, param);
     }
-
-    printf("Input nama output : ");
+    fclose(netlist);
+    
+    printf("Input nama file output : ");
     scanf(" %s", s);
 
     strcat(dir_out, s);
     strcat(dir_out, ".txt");
     output = fopen(dir_out, "w");
 
+    printf("Masukkan waktu mulai input ke file : ");
+    scanf(" %f", time_start);
+    printf("Masukkan waktu akhir input ke file : ");
+    scanf(" %f", time_end);
+
+    // Proses Output
     
+    for (time = 0; time < time_end; time += dt)
+    {
+        /* code */
+        ProcessMat();
+
+        if (time >= time_start)
+        {
+            /* code */
+            OutToFile(output);
+        }
+    }
 
     fclose(output);
-    fclose(netlist);
+
     return (0);
 }
