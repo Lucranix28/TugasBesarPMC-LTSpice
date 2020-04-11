@@ -1,6 +1,6 @@
 #include "komponen.h"
 
-#define Mat_lim 20
+#define Mat_lim 30
 
 typedef struct Volt
 {
@@ -22,11 +22,12 @@ amp default_i = {"", 0, 0};
 float Ki[Mat_lim][Mat_lim],Kv[Mat_lim][Mat_lim], Tableau[Mat_lim][Mat_lim], S[Mat_lim];
 int A[Mat_lim][Mat_lim], Transpose_Min_A[Mat_lim][Mat_lim];
 char *ground;
+
 amp I[Mat_lim];
 volt V[Mat_lim], E[Mat_lim];
 
 void newBranch(int n_komponen, const char *ID, const char *nodeA, const char *nodeB, const float param);
-int Gauss(float A[20][20]); // Source : https://www.codewithc.com/c-program-for-gauss-jordan-method/
+int Gauss(); // Source : https://www.codewithc.com/c-program-for-gauss-jordan-method/
 void resetMat();
 int Accepted(const char *nodeA, const char *nodeB);
 
@@ -38,6 +39,7 @@ int Accepted(const char *nodeA, const char *nodeB)
     if (strcmp(nodeA,nodeB))
     {
         /* code */
+        val = 0;
     }
 }
 void newBranch(int n_komponen, const char *ID, const char *nodeA, const char *nodeB, const float param)
@@ -70,7 +72,7 @@ void newBranch(int n_komponen, const char *ID, const char *nodeA, const char *no
     }
     
     char head;
-
+    
     head = ID[0];
     switch (head)
     {
@@ -95,34 +97,28 @@ void newBranch(int n_komponen, const char *ID, const char *nodeA, const char *no
         Inductor();
         break;
     default:
-        printf("Unknown");
+        printf("Komponen tidak dikenal, diabaikan");
         break;
     };
 }
 
-int Gauss(float A[20][20])
+int Gauss()
 {
     int i, j, k, n;
-    float A[20][20], c, x[10];
+    float  c, x[Mat_lim];
     printf("\nEnter the size of matrix: ");
     scanf("%d", &n);
     printf("\nEnter the elements of augmented matrix row-wise:\n");
-    for (i = 1; i <= n; i++)
-    {
-        for (j = 1; j <= (n + 1); j++)
-        {
-            printf(" A[%d][%d]:", i, j);
-            scanf("%f", &A[i][j]);
-        }
-    }
-    /* Now finding the elements of diagonal matrix */
+    
+    // Preparing Tableau Matriks
     for (j = 1; j <= n; j++)
+    /* Now finding the elements of diagonal matrix */
     {
         for (i = 1; i <= n; i++)
         {
             if (i != j)
             {
-                c = A[i][j] / A[j][j];
+                c = Tableau[i][j] / [j][j];
                 for (k = 1; k <= n + 1; k++)
                 {
                     A[i][k] = A[i][k] - c * A[j][k];
