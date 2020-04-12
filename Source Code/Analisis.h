@@ -47,7 +47,7 @@ void OutToFile(char *file){
 int isAccepted(const char *nodeA, const char *nodeB)
 {
     // Apakkah node sama
-    if (strcmp(nodeA,nodeB))
+    if (!strcmp(nodeA,nodeB))
     {
         /* code */
         return 0;
@@ -64,10 +64,9 @@ void newBranch(int n_komponen, const char *ID, const char *nodeA, const char *no
         if (n_id == 0){
         // Inisiasi Matriks
         resetMat();
-        
-        
-        strcpy(ground, nodeA);
-        strcpy(E[0].Node_id ,nodeA); // Set As Ground
+
+        strcpy(ground, nodeA); // Set As Ground
+        strcpy(E[0].Node_id ,nodeA); 
         E[0].V = 0;
         
         strcpy(E[1].Node_id,nodeB); // Next Node
