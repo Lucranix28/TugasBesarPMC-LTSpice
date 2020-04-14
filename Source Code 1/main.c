@@ -49,6 +49,16 @@ int main(void){
 
 void Input(){
 
+printf("Masukkan Tegangan input(Vi) :");
+scanf("%lf",&Vi);
+printf("\n");
+printf("Masukkan Nilai Resistansi(ohm) :");
+scanf("%lf",&R);
+printf("\n");
+printf("Masukkan Nilai Kapasitor(Farad) :");
+scanf("%lf",&C);
+printf("\n");
+
 }
 
 void Output(){
