@@ -7,13 +7,13 @@
 
 #include <stdio.h>
 
-double Vi = 5;
+double Vi;
 double delta = 0.000001;
 double V_accurate = 0.005;
 
 double Vo = 0;       //initial voltage
-double R = 10000;    //resistance
-double C = 0.000001; //Kapasitor
+double R;    //resistance
+double C; //Kapasitor
 double temp_Vo = 0;
 double dVo = 0;
 double I;
