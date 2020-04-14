@@ -7,9 +7,9 @@
 
 #include <stdio.h>
 
-double Vi 5
-double delta 0.000001
-double V_accurate 0.005
+double Vi = 5;
+double delta = 0.000001;
+double V_accurate = 0.005;
 
 double Vo = 0;       //initial voltage
 double R = 10000;    //resistance
