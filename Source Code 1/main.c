@@ -23,7 +23,9 @@ void Input();
 void Output();
 
 int main(void){
-
+    
+    FILE *fp;
+    fp = fopen("test.txt", "w");
     Input();
     for (double t = 0; (Vo + 0.001) < Vi; t += delta)
     {
@@ -42,6 +44,7 @@ int main(void){
     }
     printf("hasil telah dicetak pada file test.txt");
     
+    fclose(fp);
     return(0);
 }
 
@@ -61,9 +64,6 @@ printf("\n");
 
 void Output(){
 
-FILE *fp;
-fp = fopen("test.txt", "w");
 fprintf(fp,"%.4lf;%.3lf;.3lf \n", t, Vo, I);
-fclose(fp);
 
 }
