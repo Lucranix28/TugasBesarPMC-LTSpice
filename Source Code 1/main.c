@@ -39,7 +39,7 @@ int main(void){
         {
             /* code */
             VPrint += V_accurate;
-            fprintf(fp,"%.4lf;%.3lf \n", t, Vo);
+            fprintf(fp,"%.4lf;%.3lf;.3lf \n", t, Vo, I); //Vo tegangan antara R&C ? dan I arus pada raangkaian 
         }
     }
 
