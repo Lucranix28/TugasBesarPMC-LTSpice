@@ -11,9 +11,9 @@ double Vi;
 double delta = 0.000001;
 double V_accurate = 0.005;
 
-double Vo = 0;       //initial voltage
-double R;    //resistance
-double C; //Kapasitor
+double Vo = 0;      //initial voltage
+double R;           //resistance
+double C;           //Kapasitor
 double temp_Vo = 0;
 double dVo = 0;
 double I;
@@ -24,9 +24,7 @@ void Output();
 
 int main(void){
 
-    FILE *fp;
-    fp = fopen("test.txt", "w");
-
+    Input();
     for (double t = 0; (Vo + 0.001) < Vi; t += delta)
     {
         /* code */
@@ -39,11 +37,11 @@ int main(void){
         {
             /* code */
             VPrint += V_accurate;
-            fprintf(fp,"%.4lf;%.3lf;.3lf \n", t, Vo, I); //Vo tegangan antara R&C ? dan I arus pada raangkaian 
+            Output();
         }
     }
-
-    fclose(fp);
+    printf("hasil telah dicetak pada file test.txt");
+    
     return(0);
 }
 
@@ -62,5 +60,10 @@ printf("\n");
 }
 
 void Output(){
+
+FILE *fp;
+fp = fopen("test.txt", "w");
+fprintf(fp,"%.4lf;%.3lf;.3lf \n", t, Vo, I);
+fclose(fp);
 
 }
