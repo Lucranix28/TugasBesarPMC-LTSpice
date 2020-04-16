@@ -97,7 +97,7 @@ void Print_menu(){
     printf("\t2. Set Component \n");
     printf("\t3. Show Setting \n");
     printf("\t4. Draw Circuit \n");
-    printf("\t5. Process to Output \n");
+    printf("\t5. Process & Output \n");
     printf("\t0. Exit \n");
 
 }
