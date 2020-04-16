@@ -107,7 +107,7 @@ int Validate_com(double Input){
     {
         return 1;
     }
-    printf("--Input Waktu Keliru--\n");
+    printf("--Input Komponen Keliru--\n");
     return 0;
 }
 
@@ -127,25 +127,25 @@ int Validate_time(){
 }
 void Input_com(){
     
-    printf("\nMasukkan Tegangan input (Vi) :");
+    printf("\nMasukkan Tegangan input (Vi) : ");
     scanf("%lf", &Vi);
 
-    printf("\nMasukkan Tegangan awal kapasitor (Vo) :");
+    printf("Masukkan Tegangan awal kapasitor (Vo) : ");
     scanf("%lf", &Vo);
 
     do
     {
         /* code */
-        printf("\nMasukkan Nilai Resistansi(ohm) :");
+        printf("Masukkan Nilai Resistansi(ohm) : ");
         scanf("%lf", &R);
-    } while (Validate_com(R));
+    } while (!Validate_com(R));
 
     do
     {
         /* code */
-        printf("\nMasukkan Nilai Kapasitor(Farad) :");
+        printf("Masukkan Nilai Kapasitor(Farad) : ");
         scanf("%lf", &C);
-    } while (Validate_com(C));
+    } while (!Validate_com(C));
 
     printf("\n Input Nilai Komponen Berhasil \n");
 }
@@ -175,7 +175,7 @@ void Output()
         if (t >= t_start)
         {
             /* code */
-            fprintf(Out, "%.4lf;%.3lf;%.3lf \n", t, Vo, I);
+            fprintf(Out, "%.4lf;%.4lf;%.4lf \n", t, Vo, I);
             t_start+=t_each;
         }
     }
@@ -192,7 +192,7 @@ void Process(){
 
 void Draw_Circuit()
 {
-    printf("\n(Ground) - VSupply - (%lf V) - RES/%lf OHM - (%lf V) - CAP/%lf F - (Ground)\n", Vi, R, C, Vo);
+    printf("\n(Ground) - VSupply - (%lf V) - RES/%lf OHM - (%lf V) - CAP/%lf F - (Ground)\n", Vi, R, Vo, C);
 }
 
 void Print_set(){
