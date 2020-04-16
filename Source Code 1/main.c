@@ -37,7 +37,6 @@ int state = 0;
 5. Process to Output
 */
 
-
 // Function initial
 void Output();
 void Input_time();
