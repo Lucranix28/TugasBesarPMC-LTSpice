@@ -87,6 +87,7 @@ void Menu() {
         break;
     }
 }
+
 void Print_menu(){
     printf("\n Menu :\n");
     printf("\t1. Set Time Output \n");
