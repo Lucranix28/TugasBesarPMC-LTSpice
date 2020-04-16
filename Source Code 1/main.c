@@ -1,8 +1,5 @@
 /*  
-*   Quiz 4 : 11/02-2020
-*   Menghasilkan file berisi waktu dan tegangan C untuk kemudian di Graphign dengan External Excel
-*   Vi = 5V, R = 10k, C = 1uF
-*   Step Response, Vo,t
+*   STEP RESPONSE ANALYSIS
 */
 
 #include <stdio.h>
