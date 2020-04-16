@@ -127,7 +127,7 @@ int Validate_time(){
 }
 void Input_com(){
     
-    printf("\nMasukkan Tegangan input (Vi) : ");
+    printf("\nMasukkan Tegangan Supply (Vi) : ");
     scanf("%lf", &Vi);
 
     printf("Masukkan Tegangan awal kapasitor (Vo) : ");
