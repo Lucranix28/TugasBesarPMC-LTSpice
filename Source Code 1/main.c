@@ -24,7 +24,7 @@ double I = 0;       // Current Passing Circuit
 FILE *Out;
 
 //Menu Setting
-int state = 0;
+char state = '0';
 /*
 0. Exit
 1. Set Time Output
@@ -51,7 +51,7 @@ int main(void){
     {
         /* code */
     Menu();
-    } while (state != 0);
+    } while (state != '0');
 
     printf("Program Berakhir");
     return(0);
@@ -60,25 +60,25 @@ int main(void){
 void Menu() {
     Print_menu();
     printf("Input pilihan menu : ");
-    scanf(" %d", &state);
+    scanf(" %c", &state);
 
     switch (state)
     {
-    case 0:
+    case '0':
         break;
-    case 1:
+    case '1':
         Input_time();
         break;
-    case 2:
+    case '2':
         Input_com();
         break;
-    case 3:
+    case '3':
         Print_set();
         break;
-    case 4:
+    case '4':
         Draw_Circuit();
         break;
-    case 5:
+    case '5':
         Output();
         break;
     default:
