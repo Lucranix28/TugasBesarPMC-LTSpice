@@ -41,7 +41,7 @@ void OutToFile(char *file){
         
     }
     
-    fprintf(file,"")
+    fprintf(file,"");
 }
 
 int isAccepted(const char *nodeA, const char *nodeB)
