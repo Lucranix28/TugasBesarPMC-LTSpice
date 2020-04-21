@@ -177,7 +177,7 @@ void Output()
 {
     Out = fopen("Output/Data.txt", "w");
     // Header
-    fprintf(Out, "Waktu;Vo;I\n");
+    fprintf(Out, "Waktu (ms);Vo (V);I (A)\n");
 
     // Konten
     for (double t = 0; t < t_end; t += delta)
