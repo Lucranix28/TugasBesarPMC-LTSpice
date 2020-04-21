@@ -175,9 +175,9 @@ void Input_time(){
 
 void Output()
 {
-    Out = fopen("Output/Data.txt", "w");
+    Out = fopen("Output/Data.txt", "w+");
     // Header
-    fprintf(Out, "Waktu (ms);Vo (V);I (A)\n");
+    fputs("Waktu (ms);Vo (V);I (A)\n", Out);
 
     // Konten
     for (double t = 0; t < t_end; t += delta)
