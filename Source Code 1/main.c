@@ -6,8 +6,8 @@
 #include <stdlib.h>
 
 // Time Processing Setting
-double delta = 0.0001;
-double t_start = 0, t_end = 10, t_each = 0.01;
+double delta = 0.00001; // 0.01 ms
+double t_start = 0, t_end = 10, t_each = 0.01; // Dalam satuan ms
 
 // Component Value
 double Vi = 1;  // VSource Dc
@@ -140,14 +140,14 @@ void Input_com(){
     {
         /* code */
         printf("Masukkan Nilai Resistansi(ohm) : ");
-        scanf("%lf", &R);
+        scanf(" %lf", &R);
     } while (!Validate_com(R));
 
     do
     {
         /* code */
         printf("Masukkan Nilai Kapasitor(Farad) : ");
-        scanf("%lf", &C);
+        scanf(" %lf", &C);
     } while (!Validate_com(C));
 
     printf("\n Input Nilai Komponen Berhasil \n");
@@ -158,11 +158,16 @@ void Input_time(){
     {
         /* code */
         printf("Masukkan Waktu Mulai Mencatat(ms) :");
-        scanf("%lf", &t_start);
+        scanf(" %lf", &t_start);
+        t_start /= 1000;
+
         printf("Masukkan Waktu Akhir Mencatat(ms) :");
-        scanf("%lf", &t_end);
+        scanf(" %lf", &t_end);
+        t_end /= 1000;
+
         printf("Masukkan ketelitian waktu mencatat(ms) :");
-        scanf("%lf", &t_each);
+        scanf(" %lf", &t_each);
+        t_end /= 1000;
     } while (!Validate_time());
 
     printf("\nInput Nilai Output Waktu Berhasil \n");
@@ -171,6 +176,10 @@ void Input_time(){
 void Output()
 {
     Out = fopen("Output/Data.txt", "w");
+    // Header
+    fprintf(Out, "Waktu;Vo;I\n");
+
+    // Konten
     for (double t = 0; t < t_end; t += delta)
     {
         /* code */

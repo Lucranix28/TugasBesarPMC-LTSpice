@@ -46,7 +46,7 @@ void OutToFile(char *file){
 
 int isAccepted(const char *nodeA, const char *nodeB)
 {
-    // Apakkah node sama
+    // Apakah node sama
     if (!strcmp(nodeA,nodeB))
     {
         /* code */
