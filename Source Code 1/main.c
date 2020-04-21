@@ -7,7 +7,7 @@
 
 // Time Processing Setting
 double delta = 0.00001; // 0.01 ms
-double t_start = 0, t_end = 10, t_each = 0.01; // Dalam satuan ms
+double t_start = 0, t_end = 10, t_each = 0.1; // Dalam satuan s
 
 // Component Value
 double Vi = 1;  // VSource Dc
@@ -20,7 +20,7 @@ double temp_Vo = 0; // Voltage Before
 double dVo = 0;     // Voltage Change
 double I = 0;       // Current Passing Circuit
 
-double before[4];
+double before[5];
 char bool;
 
 // Storing Data
@@ -188,7 +188,7 @@ void Output()
     before[1] = temp_Vo;
     before[2] = dVo;
     before[3] =  I;
-
+    before[4] = t_start;
     for (double t = 0; t < t_end; t += delta)
     {
         /* code */
@@ -196,12 +196,14 @@ void Output()
         if (t >= t_start)
         {
             /* code */
-            fprintf(Out, "%.4lf;%.4lf;%.4lf \n", t, Vo, I);
+            fprintf(Out, "%lf;%lf;%lf \n", t, Vo, I);
             t_start+=t_each;
         }
     }
+
     printf("Hasil telah dicetak pada file Output/Data.txt\n\n");
 
+    t_start = before[4];
     restart();
 
     fclose(Out);
@@ -238,19 +240,19 @@ void Print_set(){
 }
 
 void restart(){
-
     bool = 'N';
-    printf("Apakah ingin mereset rangkaian ? (Y/N) : ");
+    printf("Apakah ingin mereset rangkaian ? (Y/N) : \n");
     scanf(" %c", &bool);
     if (!((bool == 'Y') ^ (bool == 'N')))
-        {
-            restart();
-        }
-        if (bool = 'Y')
-        {
-            Vo = before[0];      // Initial voltage
-            temp_Vo = before[1]; // Voltage Before
-            dVo = before[2];     // Voltage Change
-            I = before[3];       // Current Passing Circuit
-        }
+    {
+        printf("--Input Keliru--\n");
+        restart();
+    }
+    if (bool = 'Y')
+    {
+        Vo = before[0];      // Initial voltage
+        temp_Vo = before[1]; // Voltage Before
+        dVo = before[2];     // Voltage Change
+        I = before[3];       // Current Passing Circuit
+    }
 }
