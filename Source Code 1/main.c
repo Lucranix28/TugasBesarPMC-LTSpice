@@ -20,6 +20,9 @@ double temp_Vo = 0; // Voltage Before
 double dVo = 0;     // Voltage Change
 double I = 0;       // Current Passing Circuit
 
+double before[4];
+char bool;
+
 // Storing Data
 FILE *Out;
 
@@ -45,6 +48,7 @@ void Menu();
 void Print_menu();
 void Print_set();
 void Draw_Circuit();
+void restart();
 
 int main(void){
     do
@@ -157,17 +161,17 @@ void Input_time(){
     do
     {
         /* code */
-        printf("Masukkan Waktu Mulai Mencatat(ms) :");
+        printf("Masukkan Waktu Mulai Mencatat(ms) : ");
         scanf(" %lf", &t_start);
         t_start /= 1000;
 
-        printf("Masukkan Waktu Akhir Mencatat(ms) :");
+        printf("Masukkan Waktu Akhir Mencatat(ms) : ");
         scanf(" %lf", &t_end);
         t_end /= 1000;
 
-        printf("Masukkan ketelitian waktu mencatat(ms) :");
+        printf("Masukkan ketelitian waktu mencatat(ms) : ");
         scanf(" %lf", &t_each);
-        t_end /= 1000;
+        t_each /= 1000;
     } while (!Validate_time());
 
     printf("\nInput Nilai Output Waktu Berhasil \n");
@@ -179,7 +183,12 @@ void Output()
     // Header
     fputs("Waktu (s);Vo (V);I (A)\n", Out);
 
-    // Konten
+    // Pre-Restart
+    before[0] = Vo;
+    before[1] = temp_Vo;
+    before[2] = dVo;
+    before[3] =  I;
+
     for (double t = 0; t < t_end; t += delta)
     {
         /* code */
@@ -192,6 +201,9 @@ void Output()
         }
     }
     printf("Hasil telah dicetak pada file Output/Data.txt\n\n");
+
+    restart();
+
     fclose(Out);
 }
 
@@ -223,4 +235,22 @@ void Print_set(){
     printf("\n\t Tegangan Awal Kapasitor\t:\t%lf V", Vo);
 
     printf("\n");
+}
+
+void restart(){
+
+    bool = 'N';
+    printf("Apakah ingin mereset rangkaian ? (Y/N) : ");
+    scanf(" %c", &bool);
+    if (!((bool == 'Y') ^ (bool == 'N')))
+        {
+            restart();
+        }
+        if (bool = 'Y')
+        {
+            Vo = before[0];      // Initial voltage
+            temp_Vo = before[1]; // Voltage Before
+            dVo = before[2];     // Voltage Change
+            I = before[3];       // Current Passing Circuit
+        }
 }
