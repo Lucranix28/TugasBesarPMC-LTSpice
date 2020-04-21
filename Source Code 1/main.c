@@ -165,7 +165,7 @@ void Input_time(){
         scanf("%lf", &t_each);
     } while (!Validate_time());
 
-    printf("\n Input Nilai Output Waktu Berhasil \n");
+    printf("\nInput Nilai Output Waktu Berhasil \n");
 }
 
 void Output()
