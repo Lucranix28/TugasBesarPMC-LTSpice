@@ -40,16 +40,16 @@ void Process();
 
 
 
-int main(){
+int main(int argc, char *argv[]){
 	
 	char * ptr1;
     
-   	Vi = 5;
-     C  = 0.0001;
-     R  = 1000;
-     t_start = 0; //waktu mulai mencatat
-     t_end   = 10; //waktu akhir mencatat
-     t_each  =1; //ketelitian waktu mencatat
+   	Vi = strtod(argv[1],&ptr1);
+     C  = strtod(argv[2],&ptr1);
+     R  = strtod(argv[3],&ptr1);
+     t_start = strtod(argv[4],&ptr1); //waktu mulai mencatat
+     t_end   = strtod(argv[5],&ptr1); //waktu akhir mencatat
+     t_each  = strtod(argv[6],&ptr1); //ketelitian waktu mencatat
     
 
 	Output();
@@ -57,12 +57,9 @@ int main(){
 }
 
 
-void Output()
-{
-	double t, t_start_0;
-
+void Output(){
+	double t;
     Out = fopen("Output/Data.csv", "w");
-    t_start_0 = t_start;
     fprintf(Out,"Waktu;Vo;I\n");
     for (t = 0; t < t_end; t += delta)
     {
@@ -75,7 +72,6 @@ void Output()
             t_start+=t_each;
         }
     }
-    t_start = t_start_0;
     printf("Hasil telah dicetak pada file Output/Data.csv\n\n");
     fclose(Out);
 }
