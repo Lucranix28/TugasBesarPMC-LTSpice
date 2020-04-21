@@ -109,17 +109,23 @@ int Validate_com(double Input){
 }
 
 int Validate_time(){
+    int bool = 1;
     if(t_start >=t_end)
     {
-        printf("\n--Input Waktu Keliru--\n");
-        return 0;
+        printf("\n--Input Waktu AKhir lebih besar dari Input Waktu Mulai--\n");
+        bool = 0;
     }
-    if (t_each >= (t_start - t_end))
+    if (t_each >= (t_end - t_start))
     {
-        printf("\n--Input Ketelitian Keliru--\n");
-        return 0;
+        printf("\n--Input Ketelitian lebih besar dari selisih waktu input--\n");
+        bool = 0;
     }
-    return 1;
+    if ((t_end < 0) || (t_start < 0) || (t_each < 0))
+    {
+        printf("\n--Terdapat Input Waktu Negatif--\n");
+        bool = 0;
+    }
+    return bool;
 
 }
 void Input_com(){
