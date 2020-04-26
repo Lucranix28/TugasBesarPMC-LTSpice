@@ -1,0 +1,15 @@
+// First Line
+W 
+
+//Next Line
+//Elemen name   First Node  Next Node   Parameter
+
+Elemen Name : 
+    -> Voltage Source : Vsn
+    -> Current Source : Isn
+
+    -> Resistor    : R_n
+    -> Capacitor   : C_n
+    -> Inductor    : L_n
+
+    //n diubah dengan asumsi jika terdapat elemen yang sama akan menimpa elemen sebelumnya 
